@@ -1,0 +1,18 @@
+server:
+  port: 3000
+
+info:
+  app:
+    name: Alumni Backend
+    description: This is the alumni backend of my license.
+    version: 1.0.0
+
+spring:
+  mvc:
+    throw-exception-if-no-handler-found: true
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: http://localhost:8083/auth/realms/baeldung
+#          jwk-set-uri: http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/certs
