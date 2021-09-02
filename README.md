@@ -2,14 +2,13 @@
 
 This is my project of an web application that facilitates the communcation of parents, structured as an chat.
 
-## Technologies
-###Languages+Frameworks
+## Technologies - Languages+Frameworks ##
 *Java 8 / Spring + Junit 5* - for this backend.  
 *Typescript / Angular 9*  - frontend - the socketio compat. version is dependent on the framework version used).  
 *SocketIO* - netty version -> 1.7.17
 Check the compatible version on the frontend repo for JavaScript.
 ## Security
-
+This is just a stub. A new project will be consistent with current solutions on market.
 ### TLS for HTTPS on localhost
 ```
 keytool -genkeypair -alias alumni -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore alumni.p12 -validity 3650
