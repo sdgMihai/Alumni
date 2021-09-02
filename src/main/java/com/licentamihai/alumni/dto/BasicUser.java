@@ -1,10 +1,12 @@
 package com.licentamihai.alumni.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class BasicUser {
     protected String username;
 

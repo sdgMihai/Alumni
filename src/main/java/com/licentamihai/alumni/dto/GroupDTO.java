@@ -1,15 +1,17 @@
 package com.licentamihai.alumni.dto;
 
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 public class GroupDTO {
     private String name;
-    private List<String> channels;  // TODO : not sure is necessary
+    private List<String> channels;
 
     @Override
     public String toString() {

@@ -1,9 +1,15 @@
 package com.licentamihai.alumni.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.licentamihai.alumni.annotation.CascadeSave;
+import com.licentamihai.alumni.service.UserService;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.bson.types.Binary;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,6 +22,7 @@ import java.util.List;
 @Document(collection="users")
 public class SimpleUser {
     @Id
+    @JsonIgnore
     public String id;
 
     private String username;
@@ -26,8 +33,13 @@ public class SimpleUser {
     private Boolean superAdmin;
     private Boolean groupAdmin;
     private String profileImage;
+    private Binary image;
     @DBRef
+    @CascadeSave
     private List<Group> groups;
+    @DBRef
+    private List<Channel> channels;
+
 
     /**
      * Creates a simple user instance.
@@ -47,7 +59,7 @@ public class SimpleUser {
                 case 1:
                     this.password = args[1]; break;
                 case 2:
-                    this.password = args[2]; break;
+                    this.email = args[2]; break;
                 case 3:
                     this.firstName = args[3]; break;
                 case 4:
@@ -64,11 +76,26 @@ public class SimpleUser {
         this.groups.add(group);
     }
 
-    @Override
-    public String toString() {
+    /**
+     * This function doesn't verify if the channel is a duplicate.
+     * It simply adds an channel object to the user.
+     * @param channel The user is now member of this channel.
+     */
+    public void addChannel(Channel channel) {
+        if (channels == null)
+            channels  = new ArrayList<>();
+        channels.add(channel);
+    }
+
+    public String myString() {
         return String.format(
-                "SimpleUser[id=%s, firstName='%s', lastName='%s', username='%s', password='%s']",
-                id, firstName, lastName, username, password);
+                "SimpleUser[id=%s, firstName='%s', lastName='%s', username='%s', password='%s', groups='%s']"
+                        + "\nwhere groups:\n"
+                        + (groups != null ? groups.stream()
+                            .map(group -> group.toJson())
+                            .reduce("", (groupsJson, groupJson) -> groupsJson + groupJson): null)
+                        + "\n",
+                id, firstName, lastName, username, password, groups);
     }
 
     @Override
@@ -83,13 +110,12 @@ public class SimpleUser {
         if (getClass() != obj.getClass())
             return false;
         SimpleUser person = (SimpleUser) obj;
-        // field comparison
-        return firstName.equals(person.firstName)
-                && lastName.equals(person.lastName) && username.equals(person.getUsername());
+        // field comparison TODO
+        return  (username != null && person.getUsername() != null && username.equals(person.getUsername()));
     }
 
     @Override
     public int hashCode() {
-        return firstName.hashCode() + lastName.hashCode() + username.hashCode();
+        return username.hashCode();
     }
 }

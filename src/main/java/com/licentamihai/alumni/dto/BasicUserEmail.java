@@ -1,17 +1,12 @@
 package com.licentamihai.alumni.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class BasicUserEmail extends BasicUser {
     private String email;
-
-    public BasicUserEmail(String username, String email) {
-        super(username);
-        this.email = email;
-    }
 
     @Override
     public String toString() {

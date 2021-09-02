@@ -1,5 +1,13 @@
 server:
   port: 3000
+#  ssl:
+#    key-store-type: PKCS12
+#    key-store: classpath:keystore/localhost.p12
+#    key-store-password: changeit
+
+rt-server:
+  port: 9099
+  host: 0.0.0.0
 
 info:
   app:
@@ -8,11 +16,10 @@ info:
     version: 1.0.0
 
 spring:
-  mvc:
-    throw-exception-if-no-handler-found: true
-#  security:
-#    oauth2:
-#      resourceserver:
-#        jwt:
-#          issuer-uri: http://localhost:8083/auth/realms/baeldung
-#          jwk-set-uri: http://localhost:8083/auth/realms/baeldung/protocol/openid-connect/certs
+  data:
+    mongodb:
+      authentication-database: admin
+mvc:
+  throw-exception-if-no-handler-found: true
+
+
