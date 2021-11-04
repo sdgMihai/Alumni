@@ -1,6 +1,6 @@
 # Alumni
 
-This is my project of an web application that facilitates the communcation of parents, structured as an chat.
+This is my project of an web application that facilitates the communcation of parents, structured as a chat.
 
 ## Technologies - Languages+Frameworks ##
 *Java 8 / Spring + Junit 5* - for this backend.  
