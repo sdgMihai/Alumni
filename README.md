@@ -8,7 +8,7 @@ This is my project of an web application that facilitates the communcation of pa
 *SocketIO* - netty version -> 1.7.17
 Check the compatible version on the frontend repo for JavaScript.
 ## Security
-This is just a stub. A new project will be consistent with current solutions on market.
+This is just a MVP. A new project will be consistent with current solutions on market.
 ### TLS for HTTPS on localhost
 ```
 keytool -genkeypair -alias alumni -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore alumni.p12 -validity 3650
@@ -52,7 +52,7 @@ server:
     key-store-password: changeit
 ```
 It worked on localhost!
-The project works on docker with a different configuration.
+The project works on docker with a slightly different configuration.
 
 
 
